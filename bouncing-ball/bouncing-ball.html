@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bouncing Ball</title>
+	<meta charset="utf-8" />	
+	
+	<style>
+		#container{position: relative;width:150px;height: 330px;border: 1px solid #fff;}
+		#ball{position: absolute;width:138px;height: 130px;background: url(images/ball.png) #fff no-repeat 0 0;border: 1px solid #fff;}
+	</style>	
+</head>
+<body>
+
+	<div id="container">
+		<div id="ball"></div>
+	</div>	
+	<input type="button" value="Start Bounce" id="startBounce"/>
+	<input type="button" value="Stop Bounce" id="stopBounce" />
+
+	<!--script src="js/bouncingball.js"></script-->
+	
+	<script>
+	
+	
+		var testMe = {};
+	
+		var mySingleton = (function () {
+
+			// Singleton
+
+			testMe = function(){
+			
+				// Private methods and variables
+				function privateMethod(){
+					console.log( "I am private" );
+				}
+
+				var privateVariable = "Im also private";
+
+				return {
+
+				  // Public methods and variables
+				  publicMethod: function () {
+					console.log( "The public can see me!" );
+				  },
+
+				  publicProperty: "I am also public"
+				};
+
+			}
+			
+			
+			testMe.prototype = {
+				testMe: function(){
+					console.log("extended through prototype");
+				}
+			};
+		
+		})();
+		
+
+	// Usage:
+
+	var singleA = new testMe();
+	console.log(singleA);
+	//singleA.test();
+	
+//	var singleB = new mySingleton();
+	//console.log( singleA === singleB ); // true
+
+	
+	</script>
+	
+</body>
+</html>
