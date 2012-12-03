@@ -1,0 +1,42 @@
+[{ 
+	"name": "Apple",
+	"code": "APPL",
+	"value": "111" ,
+	"bid": "112",
+"offer": "110"
+},
+{ 
+	"name": "Microsoft",
+	"code": "MSFT",
+	"value": "78" ,
+	"bid": "70",
+"offer": "75"
+},
+{ 
+	"name": "Google",
+	"code": "GOGL",
+	"value": "101" ,
+	"bid": "97",
+"offer": "102"
+},
+{ 
+	"name": "Nokia",
+	"code": "NOK",
+	"value": "10" ,
+	"bid": "8",
+"offer": "9"
+},
+{ 
+	"name": "Samsung",
+	"code": "SAMS",
+		"value": "89" ,
+	"bid": "86",
+"offer": "90"
+},
+{ 
+	"name": "Intel Corporation",
+	"code": "INTC",
+	"value": "111" ,
+	"bid": "112",
+"offer": "110"
+}]

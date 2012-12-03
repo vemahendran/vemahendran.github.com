@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Market Activities</title>
+	<meta charset="utf-8" />
+	
+	<style>
+	
+		body{
+			font-family: Arial;
+		}
+		.sector{
+			width:100%;
+			float:left;
+			margin:10px 0;
+		}
+		
+		.sector p{
+			float: left;
+			line-height: 10px;
+			margin: 0;
+			padding: 10px 10px 10px 0;
+			width: 4em;
+		}
+		
+		.sector ul{
+			float: left;
+			margin: 0;
+			padding:0;
+			line-height: 20px;
+			
+		}
+		
+		.sector ul li{
+			float:left;
+			list-style:none;
+			padding-left:5px;
+			margin:5px;
+			background: url("images/img1.gif") no-repeat scroll 0 0 transparent;
+			cursor:pointer;
+		}
+		
+		.sector ul li span{
+			display: inline-block;
+			background: url("images/img2.gif") no-repeat scroll right top transparent;
+			padding: 0 10px 0 5px;
+			font-weight:none;
+		}
+		
+		.sector ul li span:hover{
+			color:#fff;
+		}
+		
+		.data_grid{
+			clear:left;
+			width: 500px;
+		}
+		
+		.data_grid table{
+			width:100%;
+			border-collapse: collapse;
+		}
+		
+		.data_grid table th{
+			padding:5px;
+			background: #ccc;
+		}
+		
+		.data_grid table td{
+			padding: 5px;
+		}
+		
+		.center{
+			text-align: center;
+		}
+		
+		table tr th:not(:first-child) {
+			text-align:right;
+		}
+		
+		table tr td:not(:first-child) {
+			text-align:right;
+		}
+		
+		
+	</style>
+</head>
+<body>
+	<h1>Market Activities</h1>
+	<div class="sector">
+		<p><strong>Sector:</strong></p>
+		<ul>
+			<li><span>Finance</span></li>
+			<li><span>Energy</span></li>
+			<li><span>FX</span></li>
+		</ul>
+	</div>
+	<div class="data_grid" id="data_grid">
+	</div>
+	
+	
+	<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js" ></script>
+	<script type="text/javascript" src="js/bid_feed.js" ></script>
+	
+	
+</body>
+</html>
