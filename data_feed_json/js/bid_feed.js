@@ -1,17 +1,16 @@
 /**
-* Handling JSON response for Data Grid
-*
-* @features:
-*	Object Oriented Approach,
-*	Used MVC Pattern
-* 
-* @author: Venkatesan Mahendran
-*
-*/
+ * Handling JSON response for Data Grid
+ *
+ * @features:
+ *	Object Oriented Approach,
+ *	Used MVC Pattern
+ *
+ * @author: Venkatesan Mahendran
+ *
+ */
 
 
 // Model :: the JSON data
-
 var GridModel = function () {
     var model = {};
 
@@ -31,27 +30,20 @@ var GridModel = function () {
 };
 
 
-var model = new GridModel();
-
-
 // View :: For data grid in the table format
-
 var GridView = function () {
 
-    var container = document.getElementById('data_grid');
-
+    var container = document.getElementById('data_grid'),
+        feedHeads = ['name', 'code', 'value', 'bid', 'offer'];
 
     var setGrid = function () {
 
-
-        var gridTitles = ['Name', 'Code', 'Value', 'Bid', 'Offer'];
-
-        var grid = document.createElement('table');
-        var gridHead = document.createElement('thead');
-        var gridBody = document.createElement('tbody');
-        var gridHeadRow = document.createElement('tr');
-
-        var len = gridTitles.length;
+        var gridTitles = ['Name', 'Code', 'Value', 'Bid', 'Offer'],
+            grid = document.createElement('table'),
+            gridHead = document.createElement('thead'),
+            gridBody = document.createElement('tbody'),
+            gridHeadRow = document.createElement('tr'),
+            len = gridTitles.length;
 
         for (var i = 0; i < len; i++) {
             var gridHeadCell = document.createElement('th');
@@ -66,12 +58,9 @@ var GridView = function () {
 
     };
 
-    var feedHeads = ['name', 'code', 'value', 'bid', 'offer'];
-
     var getFeedHeads = function () {
         return feedHeads;
     };
-
 
     var getGrid = function () {
         return ($.browser.msie) ? container.childNodes[0].childNodes[1] : container.childNodes[1].childNodes[1];
@@ -88,36 +77,34 @@ var GridView = function () {
         }
 
         return feedRow;
-
     };
 
     return {
         getGrid: getGrid,
         setGrid: setGrid,
         createFeed: createRow,
-        feedHeads: getFeedHeads
+        getFeedHeads: getFeedHeads
     };
 
 };
 
-var view = new GridView();
-
-view.setGrid();
-
 
 // Controller :: Takes care of presentational logics
-
 GridController = {
-    _init: function () {
+
+    initialFeed: {},
+
+    currentFeed: {},
+
+    _init: function (model, view) {
+        view.setGrid();
         this.loadJSON("json/bid-init.json", this.createGrid);
     },
-
 
     loadJSON: function (jsonFile, callback) {
 
         var that = this;
         callback = callback || this.updateGrid;
-
 
         $.getJSON(jsonFile, function (data) {
             if (typeof data === 'object') {
@@ -127,10 +114,6 @@ GridController = {
         });
 
     },
-
-    initialFeed: {},
-
-    currentFeed: {},
 
     createGrid: function (obj) {
 
@@ -148,21 +131,13 @@ GridController = {
             }
         }
 
-
-
     },
-
-    gridHeads: ['name', 'code', 'value', 'bid', 'offer'],
-
 
     updateGrid: function (obj) {
 
-        var gridHeads = view.feedHeads();
-
-        var dataGrid = document.getElementById("data_grid");
-
-
-        var parentEle = view.getGrid();
+        var gridHeads = view.getFeedHeads(),
+            dataGrid = document.getElementById("data_grid"),
+            parentEle = view.getGrid();
 
         obj.currentFeed = model.getModel();
 
@@ -187,10 +162,12 @@ GridController = {
     }
 };
 
-GridController._init();
+var model = new GridModel();
+var view = new GridView();
+
+GridController._init(model, view);
 
 // JSON feeds, Should be replaced by setInterval in the real time application
-
 setTimeout(function () {
     GridController.loadJSON("json/bid-one.json");
 
@@ -199,4 +176,3 @@ setTimeout(function () {
     }, 3000);
 
 }, 3000);
-
