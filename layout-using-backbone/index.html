@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="application-name" content="Cisco" />
+		<meta name="keywords" content="oracle, layout, backbone.js, jquery.js, bootstrap, interview" />
+		<meta name="description" content="Build a basic product layout for web application" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=yes" />
+
+		<title>Layout Using Backbone.js and Require.js</title>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-splitter.css"/>
+		<link rel="stylesheet" href="css/app.css" />
+		
+		<style id="antiClickjack">
+			body {
+				display: none !important;
+			}
+		</style>
+
+		<script>
+			if (self === top) {
+				var antiClickjack = document.getElementById("antiClickjack");
+				antiClickjack.parentNode.removeChild(antiClickjack);
+			} else {
+				top.location = self.location;
+			}
+		</script>
+		
+	</head>
+	<body data-is-mobile="" data-view-name="homeView" dir="ltr">
+		<noscript>
+			<p class="nonjsAlert" role="alert">
+				NOTE: Many features on the Oracle Web site require Javascript and cookies.
+			</p>
+		</noscript>
+		<div class="row" id="home">
+			<header class="gblHeader">
+				<div class="col-md-12 header">
+					<div class="col-md-6 actionButtons">
+						<button type="button" class="btn btn-primary">View</button>
+						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editProfileModal">Edit</button>
+					</div>
+  					<div class="col-md-6 nav">
+  						<nav class="logo">
+							<a href="https://www.oracle.com/"><img src="img/logo.png" alt="Oracle home" /></a>
+						</nav>
+  					</div>
+				</div>
+			</header>
+			<div class="col-md-12" id="container">
+				<div class="col-md-9" id="containerLeft">
+					<div class="col-md-4 left">
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="#">MainA-Sub1</a></li>
+							<li><a href="#">MainA-Sub2</a></li>
+							<li><a href="#">MainA-Sub3</a></li>
+						</ul>
+					</div>
+					<div class="col-md-4 middle" id="panelListContainer">
+						<!-- Backbone template insertion -->
+					</div>
+				</div>
+
+				<div class="col-md-4 right">
+					<h4>MainA-Sub1</h4>
+					<p>
+						Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ...
+					</p>
+				</div>
+
+			</div>
+			
+			<footer>
+				<div class="col-md-12 footer">
+					<p><strong>Oracle India Private Limited.</strong> Copyright @2017</p>
+				</div>
+			</footer>
+		</div>
+
+		<script type="text/html" id="panelListTemplate">
+			<ul id="panelList">
+				<% _.each(models, function(model){ %>
+
+					<% var panel = model.attributes; %>
+				
+					<li id="<%= panel.panelId %>">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><%= panel.panelTitle %></h4>
+							</div>
+							<div class="panel-body">
+								<%= panel.panelBody %>
+							</div>
+						</div>
+					</li>
+				<% }); %>
+			</ul>
+		</script>
+
+		<script type="text/html" id="profilePanelTemplate">
+
+			<div class="panel panel-default" id="<%= profilePanel.get('panelId') %>">
+				<div class="panel-heading">
+					<h4 class="panel-title"><%= profilePanel.get('panelTitle') %></h4>
+					<a class="editLink" href="#" data-toggle="modal" data-target="#editProfileModal">Edit</a>
+				</div>
+				<div class="panel-body">
+					<dl>
+						<dt>Name</dt>
+						<dd><%= user.get('name') %></dd>
+						<dt>Email</dt>
+						<dd><%= user.get('email') %></dd>
+						<dt>Phone</dt>
+						<dd><%= user.get('phoneNum') %></dd>
+						<dt>Description</dt>
+						<dd><%= user.get('description') %></dd>
+					</dl>
+				</div>
+			</div>
+		</script>
+
+		<!-- Edit Profile Panel -->
+		<script type="text/html" id="editProfileTemplate">
+			<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<form id="editProfileForm" action="#" method="post">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">Update Person Profile</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="personName">Name</label>
+									<input type="text" class="form-control" name="personName" id="personName" placeholder="Name" required="required">
+								</div>
+								<div class="form-group">
+									<label for="personEmail">Email address</label>
+									<input type="email" class="form-control" name="personEmail" id="personEmail" placeholder="Email" required="required">
+								</div>
+								<div class="form-group">
+									<label for="personPhoneNum">Phone number</label>
+									<input type="number" class="form-control" name="personPhoneNum" id="personPhoneNum" placeholder="Phone number" required="required">
+								</div>
+								<div class="form-group">
+									<label for="description">Description</label>
+									<input type="text" class="form-control" name="description" id="description" placeholder="description" required="required">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary" >Save changes</button>
+							</div>
+						</form>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+		</script>
+		
+		<script data-main="js/main" src="js/lib/require.js"></script>
+	</body>
+</html>

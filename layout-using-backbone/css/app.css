@@ -1,0 +1,131 @@
+
+/* Applicable for all different dimensions */
+
+/* reset the height and width so that elments can flow easily */
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+body .row {
+	height: 100%
+}
+
+/* header styles */
+header {
+	height: 10%;
+}
+
+header .actionButtons {
+	text-align: center;
+}
+
+header .actionButtons button{
+	margin: 10px;
+}
+
+header nav {
+	margin: 10px;	
+}
+
+/* footer styles */
+footer {
+	height: 10%;
+	text-align: center;
+}
+
+footer p {
+    margin: 10px;
+    color: #777;
+}
+
+/* Panels' contaner styles */
+
+#container {
+	height: 80%;	
+	border: 2px dashed #999;
+}
+
+@media (min-width: 992px) {
+
+}
+
+.col-md-4.left{
+	width: 20%;
+}
+
+.col-md-4.middle{
+	width: 60%;
+}
+.col-md-4.right{
+	width: 20%
+}
+
+.left ul {
+	margin: 10px;
+	padding: 10px;
+}
+
+.right h4{
+	margin: 20px;
+}
+
+.right p{
+	margin: 20px;
+}
+
+.middle ul {
+	width: 100%;
+	list-style: none;
+}
+
+.middle ul li{
+	float: left;
+}
+
+.middle ul li .panel-heading {
+    cursor: move;
+}
+
+.middle .panel {
+	float: left;
+	width: 25em;
+	height: 18em;
+	margin: 10px; 
+}
+
+.middle .panel-heading {
+	position: relative;
+}
+
+.middle .panel-heading .editLink {
+	position: absolute;
+	right: 15px;
+	bottom: 10px;
+}
+
+.middle .panel-body dl dt {
+	clear: both;
+	float: left;
+	width: 20%;
+	margin: 10px;
+}
+
+.middle .panel-body dl dd {
+	float: left;
+	margin: 10px;
+}
+
+
+.middle .panel-body dl dt:after {
+	content: ":"
+}
+
+
+
+
+
+
+
+
